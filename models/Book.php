@@ -216,5 +216,19 @@ class Book
 
         return $result->execute();
     }
+    /**
+     * Удаляет книгу с указанным id
+     * @param integer $id <p>id товара</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function deleteBookById($id)
+    {
+        $db = Db::getConnection();
+        $sql = 'DELETE FROM books WHERE id = :id';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
 
 }
